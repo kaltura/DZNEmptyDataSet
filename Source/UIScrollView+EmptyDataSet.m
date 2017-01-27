@@ -457,6 +457,11 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
                 [self addSubview:view];
             }
         }
+        else {
+            if (([self isKindOfClass:[UITableView class]] || [self isKindOfClass:[UICollectionView class]]) && self.subviews.count > 1) {
+                [view.superview sendSubviewToBack:view];
+            }
+        }
         
         // Removing view resetting the view and its constraints it very important to guarantee a good state
         [view prepareForReuse];
